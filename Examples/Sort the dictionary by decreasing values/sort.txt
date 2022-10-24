@@ -1,0 +1,60 @@
+from collections import OrderedDict
+import time
+from random import random, randrange
+# !!!!!!! test who faster
+grades = {"objdtr": 8, 1: 11, "6": 4, 3: 11, } # error algorithm 2, 3
+# random.randrange(start, stop[, step])
+a = {123}
+b = list(a)
+print(b)
+
+grades = {}
+
+for i in range(10000):
+    grades.update({i: randrange(0, 10000)})
+
+
+def sort_dict(dict_in: dict) -> dict:
+    "Sort the dictionary by decreasing values."
+    dict_out = {}
+    while dict_in:
+        max_vlist = max(set(dict_in.values()))
+        for key, val in dict_in.items():
+            if val == max_vlist:
+                dict_out[key] = dict_in.pop(key)
+                break
+    return dict_out
+
+
+def sort_dict2(dict_in: dict) -> dict:
+    "Sort the dictionary by decreasing values."
+    value_key_pairs = ((value, key) for (key, value) in dict_in.items())
+    sorted_value_key_pairs = sorted(value_key_pairs, reverse=True)
+    return {k: v for v, k in sorted_value_key_pairs}
+
+
+# What if I have Python 3.6 or lower?
+# from collections import OrderedDict
+# print(OrderedDict((k, v) for v, k in sorted_value_key_pairs))
+def sort_dict3(dict_in: dict) -> dict:
+    "Sort the dictionary by decreasing values."
+    value_key_pairs = ((value, key) for (key, value) in dict_in.items())
+    sorted_value_key_pairs = sorted(value_key_pairs, reverse=True)
+    return OrderedDict((k, v) for v, k in sorted_value_key_pairs)
+
+
+grades1 = grades.copy()
+grades2 = grades.copy()
+grades3 = grades.copy()
+
+start = time.time()
+print(sort_dict(grades1))
+print(time.time() - start)
+
+start = time.time()
+print(sort_dict2(grades2))
+print(time.time() - start)
+
+start = time.time()
+print(sort_dict3(grades3))
+print(time.time() - start)

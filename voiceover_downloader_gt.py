@@ -1,4 +1,7 @@
-﻿def voiceover_downloader_gt(words_file: str, folder: str = 'English', coding: str = 'utf-8', language: str = 'en') -> None:
+﻿import requests
+
+
+def voiceover_downloader_gt(words_file: str, folder: str = 'English', coding: str = 'utf-8', language: str = 'en') -> None:
     """
     Download the pronunciation of words (phrases) from a file in a certain language from 
     Google Translate (GT) and save in separate appropriate audio files (.mp3).
@@ -16,6 +19,7 @@
     """
 
     GOOGLE_WAY = 'https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl='
+
     almost_complete_link = f'{GOOGLE_WAY}{language}&q='
 
     try:
@@ -25,9 +29,10 @@
     except IOError as pc_error:
         print(f'Sorry, but a hardware error has occurred'
               f'({pc_error}) while reading the file: {words_file}')
-        words_base = None
+        return None
     except Exception as err:
         print("OOps: Something Else when trying read file of words.", err)
+        return None
 
     if words_base:
         for word, link_word in words_base.items():
@@ -35,12 +40,16 @@
                 response = requests.get(link_word)
             except requests.exceptions.HTTPError as errh:
                 print("Http Error:", errh)
+                continue
             except requests.exceptions.ConnectionError as errc:
                 print("Error Connecting:", errc)
+                continue
             except requests.exceptions.Timeout as errt:
                 print("Timeout Error:", errt)
+                continue
             except requests.exceptions.RequestException as err:
                 print("OOps: Something Else when trying download.", err)
+                continue
 
             try:
                 if folder:
@@ -50,7 +59,7 @@
                     open(f'{word}.mp3', 'wb').write(response.content)
             except IOError as pc_error:
                 print(f'Sorry, but a hardware error has occurred'
-                      f'({pc_error}) while reading the file: {words_file}')
+                      f'({pc_error}) while writing the file: {words_file}')
             except Exception as err:
                 print("OOps: Something Else when trying save audio file.", err)
 

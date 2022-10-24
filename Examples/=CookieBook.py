@@ -1,4 +1,4 @@
-# !!! Its only for example!
+#...!
 import os, sys, pickle, json
 
 class CookieBook:

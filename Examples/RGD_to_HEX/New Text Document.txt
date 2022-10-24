@@ -1,0 +1,7 @@
+
+def onef(r, g, b: int):
+    return f'{hex(r)[2:]}{hex(g)[2:]}{hex(b)[2:]}'
+    # return '{:2}{:2}{:2}'.format(hex(r)[2:], hex(g)[2:], hex(b)[2:])
+
+
+print(onef(255, 255, 255))
