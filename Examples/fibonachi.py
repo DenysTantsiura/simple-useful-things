@@ -67,7 +67,7 @@ start = time.time()
 print(fibonachi_counter2(limit))  # 42 = > 3/10000 s
 print(time.time() - start)
 
-======================
+# ======================
 # Of course Fibonacci numbers can be computed in O(n) by applying the Binet formula:
 
 from math import floor, sqrt
@@ -77,7 +77,7 @@ def fib(n):
 # As the commenters note it's not O(1) but O(n) because of 2**n. Also a difference is that you only get one value, while with recursion you get all values of Fibonacci(n) up to that value.
 
 print(fib(5))
-================================
+# ================================
 # If you want to get only few Fibonacci numbers, you can use matrix method.
 
 from numpy import matrix
@@ -87,7 +87,7 @@ def fib(n):
 # It's fast as numpy uses fast exponentiation algorithm. You get answer in O(log n). And it's better than Binet's formula because it uses only integers. But if you want all Fibonacci numbers up to n, then it's better to do it by memorisation.
 
 print(fib(5))
-===============================
+# ===============================
 # We can do that using @lru_cache decorator and setrecursionlimit() method:
 
 import sys
@@ -107,7 +107,7 @@ def fib(n: int) -> int:
 
 
 print(fib(5)) # 14000
-=====================================
+# =====================================
 # As @alex suggested, you could use a generator function to do this sequentially instead of recursively.
 
 # Here's the equivalent of the code in your question: !!!(for python 2.7??? xrange
@@ -125,7 +125,7 @@ def fib(n):
 # print format(fib(1000), ',d')  # -> no recursion depth error if fib(100000)
 print(fib(1000))
 
-======================================
+# ======================================
 
 # Use generators?  for python
 
@@ -142,7 +142,7 @@ f = [next(fibs) for x in range(101)]
 
 for num in f:
     print(num)
-================================
+# ================================
 # Many recommend that increasing recursion limit is a good solution however it is not because there will be always limit. Instead use an iterative solution.
 
 def fib(n):
@@ -154,7 +154,7 @@ def fib(n):
     return a
 
 print(fib(5))
-======================================
+# ======================================
 
 import sys
 sys.setrecursionlimit(1500)
@@ -167,7 +167,7 @@ def fib(n, sum):
 
 c = 998
 print(fib(c, 0))
-========================================
+# ========================================
 
 # We could also use a variation of dynamic programming bottom up approach
 
@@ -183,9 +183,76 @@ def fib_bottom_up(n):
     return bottom_up[n]
 
 print(fib_bottom_up(200)) # 20000
-==========================================
+# ==========================================
+# ==========================================
 
 
+from time import time
+
+n = 37  # 12 # 37
+
+fibo_cycle = time()
+def fibonacci(n):
+    a, b = 0, 1
+    if n == 0:
+        return a
+    for item in range(n):
+        a, b = b, a + b
+    return a
+
+print('fibo_cycle:')
+print(fibonacci(n))
+print(-fibo_cycle + time())
+
+
+fibo_recursion_cache = time()
+cashe = {}
+def fiborc(n):
+    if cashe.get(n, None):
+        return cashe[n]
+    if n == 0:
+        cashe[n] = n
+        return 0
+    if n in (1, 2):
+        cashe[n] = 1
+        return 1
+    cashe[n] = fiborc(n-1) + fiborc(n-2)
+    #return fiborc(n-1) + fiborc(n-2)
+    return cashe[n]
+
+print('fibo_recursion_cache:')
+print(fiborc(n))
+print(-fibo_recursion_cache + time())
+
+fibo_recursion_cache2 = time()
+print(fiborc(n+1))
+print(-fibo_recursion_cache2 + time())
+
+fibo_recursion = time()
+def fibor(n):
+    if n == 0:
+        return 0
+    if n in (1, 2):
+        return 1
+    return fibor(n-1) + fibor(n-2)
+
+print('fibo_recursion:')
+print(fibor(n))
+print(-fibo_recursion + time())
+
+fibo_generator = time()
+def fib():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+f = fib()
+for item in range(n):
+    next(f)
+print('fibo_generator:')    
+print(next(f))
+print(time() - fibo_generator)
 
 
 

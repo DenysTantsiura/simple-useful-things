@@ -29,3 +29,7 @@ result1 = re.findall(r"\b[a-zA-z][\w_.]+@[a-zA-z]+\.[a-zA-z]{2,}[ ]", text)
 result1 = [i.strip() for i in result1]
 result2 = re.findall(r"\b[a-zA-z][\w_.]+@[a-zA-z]+\.[a-zA-z]+\.[a-zA-z]{2,}", text)
 print(list(set(result1+result2)))
+
+
+# sololearn ? group()?
+result3 = re.findall(r'([\w\.-]+)@([\w\.-]+)(\.[\w\.])', text)
