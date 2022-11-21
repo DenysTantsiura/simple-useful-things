@@ -66,6 +66,7 @@ drop_file(new_free_size, file_number)
 
 input(f'Free space on disk \"{disk}\", Kb: ', shutil.disk_usage('/').free / KB)
 
+# need test
 
 # possible_number_of_files = (shutil.disk_usage('/').free / KB) // 4
 
