@@ -1,5 +1,10 @@
 import time
 
+'''
+# bad var of recu
+def f(x):
+    return 0 if x == 0 else (f(x-1)+f(x-2)) if x > 1 else 1
+'''
 
 def fibon(fun):
 
