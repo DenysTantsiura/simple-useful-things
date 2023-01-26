@@ -1,0 +1,35 @@
+from time import time
+
+
+def factorize_1(*numbers):
+    rez = []
+    for number in numbers:
+        subnumber_group = [1]
+        for i in range(2, (number//2)+1):
+            if number % i == 0:
+                subnumber_group.append(i)
+
+        subnumber_group.append(number)
+        rez.append(subnumber_group)
+
+    return rez
+
+def factorize_2(*numbers):
+    rez = []
+    for number in numbers:
+        subnumber_group = [1]
+        for i in range(2, int(pow(number, 0.5))+1):  # (number//2)+1
+            if number % i == 0:
+                subnumber_group.append(i)
+                subnumber_group.append(int(number/i))
+
+        subnumber_group.append(number)
+        subnumber_group.sort()
+        rez.append(subnumber_group)
+
+    return rez
+
+start = time()
+print(factorize_1(128, 255, 99999, 10651060))
+print(f'Duration: {time() - start} sec')
+

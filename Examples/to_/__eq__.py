@@ -6,7 +6,7 @@ class A:
     def __str__(self):
         return "A"
 
-    def __eq__(self, ohter):
+    def __eq__(self, other):
         return self.i*self.j==other.i*other.j
 
 def main():

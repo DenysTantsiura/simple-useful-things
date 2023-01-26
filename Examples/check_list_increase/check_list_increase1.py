@@ -1,7 +1,7 @@
 # print(help(dict))
 # help(dict)
 
-base_list = [-1, 0, 1, 2, 3]
+base_list = [-2, -1, 0, 1, 2, 3, 4, 5]
 
 
 def check_list_increase0(base_list: list) -> list:
@@ -23,13 +23,14 @@ print(check_list_increase1([-1, 0, 1, 2, 4]))
 print(check_list_increase1([-2, 0, 1, 2, 3]))
 print(check_list_increase1([0, 1]))
 print(check_list_increase1([1]))
+print(check_list_increase1([]))
 
-
-def check_list_increase1(base_list: list) -> list:
+def check_list_increase2(base_list: list) -> list:
     return all([el-1 == base_list[idx] for idx, el in enumerate(base_list[1:])]) if len(base_list) > 1 else True
 
-print(check_list_increase1(base_list))
-print(check_list_increase1([-1, 0, 1, 2, 4]))
-print(check_list_increase1([-2, 0, 1, 2, 3]))
-print(check_list_increase1([0, 1]))
-print(check_list_increase1([1]))
+print(check_list_increase2(base_list))
+print(check_list_increase2([-1, 0, 1, 2, 4]))
+print(check_list_increase2([-2, 0, 1, 2, 3]))
+print(check_list_increase2([0, 1]))
+print(check_list_increase2([1]))
+print(check_list_increase2([]))
