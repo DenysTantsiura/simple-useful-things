@@ -1,6 +1,0 @@
-
-def div(x, /, y, c):
-
-    print(x + y *c)
-
-div(1, c=2, y=3)

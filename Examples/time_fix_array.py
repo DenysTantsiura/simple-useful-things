@@ -1,8 +1,9 @@
-
 from array import array
 import pickle
 import time
 #from time import time
+#from timeit import default_timer
+
 
 start = time.time()
 int_array = array('i', range(0, 1000000))

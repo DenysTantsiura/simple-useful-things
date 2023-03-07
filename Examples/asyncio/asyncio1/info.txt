@@ -1,0 +1,9 @@
+Маленьке зауваження для Домашки-5
+сайт Привату трошки обманює)
+зловив це під час тестування: вказав PLZ - але нова назва PLN
+наявні валюти не ті що в їх документації а такі:
+'AUD', 'AZN', 'BYN', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK', 'EUR', 'GBP', 'GEL', 'HUF', 'ILS', 'JPY', 'KZT', 'MDL', 'NOK', 'PLN', 'SEK', 'SGD', 'TMT', 'TRY', 'UAH', 'USD', 'UZS', 'XAU'
+
+
+https://bank.gov.ua/NBUStatService/v1/statdirectory/stat/dim/kl_R030/full
+

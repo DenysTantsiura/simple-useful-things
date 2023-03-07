@@ -1,0 +1,13 @@
+
+def div(x, /, y, c):
+
+    print(x + y *c)
+
+div(1, c=2, y=3)
+
+def div2(x, *, y, c):
+
+    print(x + y *c)
+
+div2(1, c=2, y=3)
+div2(x=1, 2, 3)
